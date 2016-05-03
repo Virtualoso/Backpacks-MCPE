@@ -4,7 +4,7 @@
 
 class Backpack : public Item
 {
-	public:
+public:
 
-		Backpack(const std::string&, short);
+	Backpack(const std::string&, short);
 };

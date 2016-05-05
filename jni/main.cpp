@@ -21,7 +21,7 @@ static void Item$initItems()
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 
-	MSHookFunction((void*) &Item::initItems, (void*) &Item$initItems, (void**) &_Item$initItems)
+	MSHookFunction((void*) &Item::initItems, (void*) &Item$initItems, (void**) &_Item$initItems);
 
 	return JNI_VERSION_1_2;
 }

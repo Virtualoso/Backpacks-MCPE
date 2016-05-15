@@ -16,7 +16,7 @@ static void Item$initItems()
 {
 	_Item$initItems();
 
-	BackpackItems::initBackpacks();
+	BackpackItems::initItems();
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {

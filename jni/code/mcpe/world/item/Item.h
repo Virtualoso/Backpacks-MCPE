@@ -3,9 +3,9 @@
 #include <string>
 #include <memory>
 
-#include "../../CreativeItemCategory.h"
-#include "../../CommonTypes.h"
-#include "../../UseAnimation.h"
+#include "CreativeItemCategory.h"
+#include "CommonTypes.h"
+#include "UseAnimation.h"
 
 class TextureUVCoordinateSet;
 struct SeedItemComponent;

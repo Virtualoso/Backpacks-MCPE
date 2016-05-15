@@ -14,9 +14,9 @@
 static void (*_Item$initItems)();
 static void Item$initItems()
 {
-	_Item$initItems();
-
 	BackpackItems::initItems();
+	
+	_Item$initItems();
 }
 
 static void (*_Item$initCreativeItems)();

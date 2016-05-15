@@ -12,8 +12,6 @@ void BackpackItems::initItems()
 	backpack = new Backpack("backpack", 1337);
 	bigbackpack = new BigBackpack("bigbackpack", 1338);
 	boundleather = new Leather("boundleather", 1339);
-	
-	initCreativeItems();
 }
 
 void BackpackItems::initCreativeItems()

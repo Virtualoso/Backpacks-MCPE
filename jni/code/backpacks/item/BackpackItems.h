@@ -49,5 +49,5 @@ public:
 	static Item* tannedleather;
 	
 	static void initItems();
-	static void initCreativeItems();
+	static void initTabs();
 };

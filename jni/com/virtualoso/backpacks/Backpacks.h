@@ -5,7 +5,7 @@
 class Backpacks : public Mod
 {
 public:
-	ExampleMod() : Mod() {};
+	Backpacks() : Mod() {};
 	virtual void initItems();
 	virtual void initCustomCreativeItems();
 };

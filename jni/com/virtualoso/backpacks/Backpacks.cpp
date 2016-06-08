@@ -9,12 +9,12 @@
 #include "item/BackpackItems.h"
 
 
-void Mod::initItems()
+void Backpacks::initItems()
 {
 	BackpackItems::initItems();
 }
 
-void Mod::initCustomCreativeItems()
+void Backpacks::initCustomCreativeItems()
 {
 	BackpackItems::initTabs();
 }

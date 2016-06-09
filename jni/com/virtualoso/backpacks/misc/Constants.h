@@ -4,6 +4,7 @@
 
 class Constants
 {
+public:
 	static std::string MOD_ID;
 	static std::string MOD_NAME;
 	static std::string MOD_VERSION;
@@ -19,12 +20,14 @@ class Constants
 
 	class Guis
 	{
+	public:
     	static char OPEN_PERSONAL_BACKPACK;
     	static char OPEN_PERSONAL_SLOT;
     };
 
 	class GuiCommands 
 	{
+	public:
     	static char CLEAR;
     	static char SAVE;
     	static char PREV;
@@ -33,6 +36,7 @@ class Constants
 
 	class NBT
 	{
+	public:
     	static std::string INVENTORIES;
     	static std::string INVENTORY_BACKPACK;
     	static std::string INVENTORY_PERSONAL_BACKPACK;

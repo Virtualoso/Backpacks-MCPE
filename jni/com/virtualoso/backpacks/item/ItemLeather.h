@@ -2,8 +2,8 @@
 
 #include "com/mojang/minecraftpe/world/item/Item.h"
 
-class Backpack : public Item
+class ItemLeather : public Item
 {
 public:
-	Backpack(const std::string&);
+	ItemLeather(const std::string&);
 };

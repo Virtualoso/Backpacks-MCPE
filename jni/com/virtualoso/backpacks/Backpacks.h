@@ -7,5 +7,6 @@ class Backpacks : public Mod
 public:
 	Backpacks() : Mod() {};
 	virtual void initItems();
+	virtual void initVanillaCreativeItems();
 	virtual void initCustomCreativeItems();
 };

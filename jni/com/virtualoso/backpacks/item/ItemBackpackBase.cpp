@@ -20,11 +20,9 @@ const std::string ItemBackpackBase::buildDescriptionName(const ItemInstance& ite
 	int tier = damage / 100 < 3 ? damage / 100 : 0;
 	int meta = damage % 100;
 	nameId += (tier == 0 ? "" : ".") + BackpackItems::BACKPACK_TIERS[tier];
-	if(meta > 0 && meta < 17) { // add color
+	if(meta > 0 && meta < 17) // add color
 		nameId += (tier == 0 ? "." : "_") + BackpackItems::BACKPACK_COLORS[damage % 100];
-	}
-	if(meta == 99) { // ender backpack
+	if(meta == 99) // ender backpack
 		nameId += (tier == 0 ? "." : "_") + BackpackItems::BACKPACK_COLORS[17];
-	}
 	return I18n::get(nameId + ".name");
 }

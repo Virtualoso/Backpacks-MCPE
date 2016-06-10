@@ -2,9 +2,12 @@
 
 #include "com/mojang/minecraftpe/client/nbt/CompoundTag.h"
 #include "com/mojang/minecraftpe/client/nbt/ListTag.h"
+#include "com/mojang/minecraftpe/world/item/ItemInstance.h"
 
 #include "../util/NBTUtil.h"
+#include "../util/NBTItemInstanceUtil::h"
 #include "../misc/Constants.h"
+#include "../item/BackpackItems.h"
 
 
 BackpackSave::BackpackSave(const std::string& uuid) : AbstractSave(uuid) { }
@@ -19,19 +22,19 @@ BackpackSave::BackpackSave(ItemInstance* backpack) : BackpackSave(backpack, fals
 
 BackpackSave::BackpackSave(ItemInstance* backpack, bool force) : AbstractSave(new CompoundTag())
 {
-	//if(!NBTItemInstanceUtil.hasTag(backpack, Constants::NBT::UID))
-	//{
-	//	initialize(backpack);
-	//}
-	//else
-	//{
-	//	if(backpack.getItem() instanceof ItemBackpackBase)
-	//	{
-	//		load(NBTItemInstanceUtil.getstd::string(backpack, Constants::NBT::UID));
-	//		if(force)
-	//			initialize(backpack);
-	//	}
-	//}
+	if(!NBTItemInstanceUtil::hasTag(backpack, Constants::NBT::UID))
+	{
+		initialize(backpack);
+	}
+	else
+	{
+		if(backpack->item == BackpackItems::backpack || backpack->item == BackpackItems::workbenchBackpack)
+		{
+			load(NBTItemInstanceUtil::getString(backpack, Constants::NBT::UID));
+			if(force)
+				initialize(backpack);
+		}
+	}
 }
 
 bool BackpackSave::isUninitialized()
@@ -84,10 +87,10 @@ std::string BackpackSave::getUUID()
 
 std::string BackpackSave::getUUID(ItemInstance* backpack)
 {
-	//if(NBTItemInstanceUtil.hasTag(backpack, Constants::NBT::UID))
-	//	return NBTItemInstanceUtil.getstd::string(backpack, Constants::NBT::UID);
-	//else
-	//	return new BackpackSave(backpack).getUUID();
+	if(NBTItemInstanceUtil::hasTag(backpack, Constants::NBT::UID))
+		return NBTItemInstanceUtil::getString(backpack, Constants::NBT::UID);
+	else
+		return (new BackpackSave(backpack))->getUUID();
 }
 
 bool BackpackSave::isIntelligent()

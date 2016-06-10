@@ -5,7 +5,7 @@
 #include "com/mojang/minecraftpe/world/item/ItemInstance.h"
 
 #include "../util/NBTUtil.h"
-#include "../util/NBTItemInstanceUtil::h"
+#include "../util/NBTItemInstanceUtil.h"
 #include "../misc/Constants.h"
 #include "../item/BackpackItems.h"
 

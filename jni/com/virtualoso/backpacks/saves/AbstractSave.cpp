@@ -2,7 +2,8 @@
 
 #include "com/mojang/minecraftpe/client/nbt/CompoundTag.h"
 
-AbstractSave::AbstractSave(CompoundTag* data) {
+AbstractSave::AbstractSave(CompoundTag* data)
+{
 	nbtTagCompound = data;
 	if(!nbtTagCompound) {
 		nbtTagCompound = new CompoundTag();
@@ -10,12 +11,14 @@ AbstractSave::AbstractSave(CompoundTag* data) {
 	manualSaving = false;
 }
 
-AbstractSave::AbstractSave(const std::string& UUID) {
+AbstractSave::AbstractSave(const std::string& UUID)
+{
 	load(UUID);
 	manualSaving = false;
 }
 
-void AbstractSave::setManualSaving() {
+void AbstractSave::setManualSaving()
+{
 	manualSaving = true;
 }
 

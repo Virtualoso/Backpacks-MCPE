@@ -44,11 +44,11 @@ bool BackpackSave::isUninitialized()
 
 void BackpackSave::initialize(ItemInstance* backpack)
 {
-	/*if(backpack.getItem() instanceof ItemBackpackBase && BackpackUtil.isServerSide()) {
-		NBTItemInstance*Util.setstd::string(backpack, Constants::NBT::NAME, backpack.getItem().getUnlocalizedName(backpack) + ".name");
+	/*if(backpack->item instanceof ItemBackpackBase && BackpackUtil.isServerSide()) {
+		NBTItemInstanceUtil::setString(backpack, Constants::NBT::NAME, backpack.getItem().getUnlocalizedName(backpack) + ".name");
 		if(!NBTItemInstance*Util.hasTag(backpack, Constants::NBT::UID)) {
-			UID = UUID.randomUUID().tostd::string();
-			NBTItemInstance*Util.setstd::string(backpack, Constants::NBT::UID, UID);
+			UID = UUID.randomUUID().toString();
+			NBTItemInstance*Util.setString(backpack, Constants::NBT::UID, UID);
 		}
 
 		int size = 0;

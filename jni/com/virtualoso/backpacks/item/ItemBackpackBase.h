@@ -7,4 +7,6 @@ class ItemBackpackBase : public Item
 public:
 	ItemBackpackBase(const std::string&, short);
 	virtual const std::string buildDescriptionName(const ItemInstance&) const;
+	
+	std::string getUnlocalizedName(const ItemInstance&) const;
 };

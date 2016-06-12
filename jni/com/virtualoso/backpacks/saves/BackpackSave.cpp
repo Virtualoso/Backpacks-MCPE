@@ -2,12 +2,16 @@
 
 #include "com/mojang/minecraftpe/client/nbt/CompoundTag.h"
 #include "com/mojang/minecraftpe/client/nbt/ListTag.h"
+#include "com/mojang/minecraftpe/client/AppPlatform_android.h"
 #include "com/mojang/minecraftpe/world/item/ItemInstance.h"
+#include "com/mojang/minecraftpe/world/item/Item.h"
 
 #include "../util/NBTUtil.h"
 #include "../util/NBTItemInstanceUtil.h"
+#include "../util/BackpackUtil.h"
 #include "../misc/Constants.h"
 #include "../item/BackpackItems.h"
+#include "../item/ItemBackpackBase.h"
 
 
 BackpackSave::BackpackSave(const std::string& uuid) : AbstractSave(uuid) { }
@@ -44,24 +48,26 @@ bool BackpackSave::isUninitialized()
 
 void BackpackSave::initialize(ItemInstance* backpack)
 {
-	/*if(backpack->item instanceof ItemBackpackBase && BackpackUtil.isServerSide()) {
-		NBTItemInstanceUtil::setString(backpack, Constants::NBT::NAME, backpack.getItem().getUnlocalizedName(backpack) + ".name");
-		if(!NBTItemInstance*Util.hasTag(backpack, Constants::NBT::UID)) {
-			UID = UUID.randomUUID().toString();
-			NBTItemInstance*Util.setString(backpack, Constants::NBT::UID, UID);
+	if((backpack->item == BackpackItems::backpack || backpack->item == BackpackItems::workbenchBackpack) && BackpackUtil::isServerSide())
+	{
+		NBTItemInstanceUtil::setString(backpack, Constants::NBT::NAME, ((ItemBackpackBase*)backpack->item)->getUnlocalizedName(*backpack) + ".name");
+		if(!NBTItemInstanceUtil::hasTag(backpack, Constants::NBT::UID))
+		{
+			UID = ((AppPlatform_android*)AppPlatform::mSingleton)->createUUID();
+			NBTItemInstanceUtil::setString(backpack, Constants::NBT::UID, UID);
 		}
 
 		int size = 0;
-		int damage = backpack.getItemDamage();
+		int damage = backpack->aux;
 		int tier = damage / 100 < 3 ? damage / 100 : 0;
 		int meta = damage % 100;
-		// TODO change BackpackUtil.getSize(tier, color) [multidimensional array build from config]
+		// TODO change BackpackUtil::getSize(tier, color) [multidimensional array build from config]
 		if(meta == 99) { // ender
 			size = 27;
 		} else if(meta < 17 && tier == 2) { // big
-			size = ConfigurationBackpack.BACKPACK_SLOTS_L;
+			size = 54;//ConfigurationBackpack.BACKPACK_SLOTS_L;
 		} else if(meta < 17 && tier == 0) { // normal
-			size = ConfigurationBackpack.BACKPACK_SLOTS_S;
+			size = 27;//ConfigurationBackpack.BACKPACK_SLOTS_S;
 		} else if(meta == 17 && tier == 0) { // workbench
 			size = 9;
 		} else if(meta == 17 && tier == 2) { // big workbench
@@ -72,12 +78,12 @@ void BackpackSave::initialize(ItemInstance* backpack)
 
 		setSlotsPerRow(9);
 		setSize(size);
-		setType(BackpackUtil.getType(backpack));
+		setType(BackpackUtil::getType(backpack));
 		if(!NBTUtil::hasTag(nbtTagCompound, Constants::NBT::INVENTORIES))
-			NBTUtil::setCompoundTag(nbtTagCompound, Constants::NBT::INVENTORIES, new CompoundTag*());
+			NBTUtil::setCompoundTag(nbtTagCompound, Constants::NBT::INVENTORIES, new CompoundTag());
 
 		save();
-	}*/
+	}
 }
 
 std::string BackpackSave::getUUID()
@@ -164,7 +170,7 @@ void BackpackSave::setType(char type)
 
 void BackpackSave::save()
 {
-	if(!UID.empty() /*&& BackpackUtil.isServerSide()*/)
+	if(!UID.empty() && BackpackUtil::isServerSide())
 		//Backpack.saveFileHandler.saveBackpack(nbtTagCompound, UID);
 
 	manualSaving = false;
@@ -172,7 +178,7 @@ void BackpackSave::save()
 
 void BackpackSave::load(const std::string& UUID)
 {
-	if(!UUID.empty() /*&& BackpackUtil.isServerSide()*/) {
+	if(!UUID.empty() && BackpackUtil::isServerSide()) {
 		UID = UUID;
 		nbtTagCompound = /*Backpack.saveFileHandler.loadBackpack(UID)*/ new CompoundTag();
 	}

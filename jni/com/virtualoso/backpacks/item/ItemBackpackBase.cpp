@@ -14,6 +14,11 @@ ItemBackpackBase::ItemBackpackBase(const std::string& name, short id) : Item(nam
 
 const std::string ItemBackpackBase::buildDescriptionName(const ItemInstance& item) const
 {
+	return I18n::get(getUnlocalizedName(item) + ".name");
+}
+
+std::string ItemBackpackBase::getUnlocalizedName(const ItemInstance& item) const
+{
 	std::string nameId = name;
 	
 	int damage = item.aux;
@@ -24,5 +29,5 @@ const std::string ItemBackpackBase::buildDescriptionName(const ItemInstance& ite
 		nameId += (tier == 0 ? "." : "_") + BackpackItems::BACKPACK_COLORS[damage % 100];
 	if(meta == 99) // ender backpack
 		nameId += (tier == 0 ? "." : "_") + BackpackItems::BACKPACK_COLORS[17];
-	return I18n::get(nameId + ".name");
+	return nameId;
 }

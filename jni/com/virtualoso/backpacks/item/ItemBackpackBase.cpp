@@ -12,9 +12,19 @@ ItemBackpackBase::ItemBackpackBase(const std::string& name, short id) : Item(nam
 	setCategory(CreativeItemCategory::ITEMS);
 }
 
+bool ItemBackpackBase::requiresInteract() const
+{
+	return true;
+}
+	
 const std::string ItemBackpackBase::buildDescriptionName(const ItemInstance& item) const
 {
 	return I18n::get(getUnlocalizedName(item) + ".name");
+}
+
+const std::string ItemBackpackBase::getInteractText() const
+{
+	return I18n::get("action.interact.opencontainer");
 }
 
 std::string ItemBackpackBase::getUnlocalizedName(const ItemInstance& item) const

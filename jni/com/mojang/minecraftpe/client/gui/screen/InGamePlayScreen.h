@@ -2,6 +2,12 @@
 
 #include "Screen.h"
 
+class Vec3;
+class Entity;
+class Player;
+class LevelRenderer;
+class FrustumData;
+
 class InGamePlayScreen : public Screen
 {
 public:

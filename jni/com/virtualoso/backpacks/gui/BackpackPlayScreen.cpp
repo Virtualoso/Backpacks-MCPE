@@ -1,6 +1,6 @@
 #include "BackpackPlayScreen.h"
 
-#include "com/mojang/minecraftpe/client/MinecraftClient.h
+#include "com/mojang/minecraftpe/client/MinecraftClient.h"
 #include "com/mojang/minecraftpe/client/renderer/texture/TextureGroup.h"
 #include "com/mojang/minecraftpe/client/gui/IntRectangle.h"
 #include "com/mojang/minecraftpe/client/gui/ImageWithBackground.h"

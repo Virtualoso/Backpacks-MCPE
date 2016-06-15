@@ -1,6 +1,6 @@
 #pragma once
 
-#include "com/mojang/client/gui/screen/InGamePlayScreen.h"
+#include "com/mojang/minecraftpe/client/gui/screen/InGamePlayScreen.h"
 
 class ImageWithBackground;
 

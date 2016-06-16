@@ -13,4 +13,5 @@ public:
 	
 	virtual void init();
 	virtual void setupPositions();
+	virtual void render(ScreenContext&);
 };

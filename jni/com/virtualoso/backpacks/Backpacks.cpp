@@ -7,6 +7,7 @@
 #include "com/mojang/minecraftpe/locale/Localization.h"
 #include "com/mojang/minecraftpe/client/MinecraftClient.h"
 #include "com/mojang/minecraftpe/client/gui/screen/ScreenChooser.h"
+#include "com/mojang/minecraftpe/client/gui/screen/AbstractScreenSetupCleanupStrategy.h"
 
 #include "Backpacks.h"
 

@@ -17,9 +17,9 @@ void BackpackPlayScreen::init()
 		backpackButton = std::make_shared<ImageWithBackground>(1);
 		backpackButton->init(mcClient->getTextures(), 28, 28, {49, 43, 14, 14}, {49, 43, 14, 14}, 2, 2, "gui/spritesheet.png");
 		backpackButton->setImageDef({mcClient->getTextures()->getTexture("gui/spritesheet.png", TextureLocation::Default), 0, 1, 18.0F, 18.0F, {60, 0, 18, 18}, true}, true);
-		
-		buttonList.emplace_back(backpackButton);
 	}
+	
+	buttonList.emplace_back(backpackButton);
 }
 
 void BackpackPlayScreen::setupPositions()
@@ -27,4 +27,10 @@ void BackpackPlayScreen::setupPositions()
 	backpackButton->xPosition = 0;
 	backpackButton->yPosition = 0;
 	backpackButton->setSize(5, 5);
+}
+
+void BackpackPlayScreen::render(ScreenContext& screen)
+{
+	InGamePlayScreen::render(screen);
+	Screen::render(screen);
 }

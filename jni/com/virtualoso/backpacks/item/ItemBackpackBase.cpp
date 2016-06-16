@@ -4,6 +4,7 @@
 #include "com/mojang/minecraftpe/locale/I18n.h"
 
 #include "BackpackItems.h"
+#include "../saves/BackpackSave.h"
 
 ItemBackpackBase::ItemBackpackBase(const std::string& name, short id) : Item(name, id - 0x100)
 {
@@ -16,10 +17,20 @@ bool ItemBackpackBase::requiresInteract() const
 {
 	return true;
 }
+
+bool ItemBackpackBase::use(ItemInstance& item, Player& player)
+{
+	return Item::use(item, player); //TODO
+}
 	
 const std::string ItemBackpackBase::buildDescriptionName(const ItemInstance& item) const
 {
 	return I18n::get(getUnlocalizedName(item) + ".name");
+}
+
+void ItemBackpackBase::onCraftedBy(ItemInstance& item, Level& level, Player& player)
+{
+	new BackpackSave(&item, true);
 }
 
 const std::string ItemBackpackBase::getInteractText() const

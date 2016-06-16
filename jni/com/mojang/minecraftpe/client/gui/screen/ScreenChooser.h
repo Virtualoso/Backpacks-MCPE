@@ -16,6 +16,7 @@ class BrewingStandTileEntity;
 class FurnaceTileEntity;
 class SkinPack;
 class UIScreenType;
+class AbstractScreenSetupCleanupStrategy;
 typedef int StorageVersion;
 
 class ScreenChooser {
@@ -25,6 +26,7 @@ public:
 	ScreenChooser(MinecraftClient&, UIScreenType, bool);
 	~ScreenChooser();
 	void _pushScreen(std::shared_ptr<BaseScreen>, bool);
+	void _pushScreen(std::shared_ptr<BaseScreen>, std::unique_ptr<AbstractScreenSetupCleanupStrategy>,bool);
 	void* pushPausePrevScreen();
 	void* pushPauseScreen();
 	void* pushGamePadLayoutScreen(bool);

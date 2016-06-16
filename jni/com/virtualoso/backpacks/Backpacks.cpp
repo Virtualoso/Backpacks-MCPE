@@ -47,7 +47,10 @@ static void MinecraftClient$_initMinecraftClient(MinecraftClient* self)
 static void (*_ScreenChooser$setGameplayScreen)(ScreenChooser*);
 static void ScreenChooser$setGameplayScreen(ScreenChooser* self)
 {
-	_ScreenChooser$setGameplayScreen(self);
+	if(!self->client.isRealityFullVRMode())
+		self->_pushScreen(std::make_shared<BackpackPlayScreen>(self->client), createScreenSetupStrategy(self->client, ScreenSetupStrategyId::DEF_LEVEL), true);
+	else
+		_ScreenChooser$setGameplayScreen(self);
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved)

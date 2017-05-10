@@ -6,15 +6,15 @@
 
 #include "com/mojang/minecraftpe/locale/Localization.h"
 #include "com/mojang/minecraftpe/client/MinecraftClient.h"
-#include "com/mojang/minecraftpe/client/gui/screen/ScreenChooser.h"
-#include "com/mojang/minecraftpe/client/gui/screen/AbstractScreenSetupCleanupStrategy.h"
+#include "com/mojang/minecraftpe/client/screen/ScreenChooser.h"
+#include "com/mojang/minecraftpe/client/screen/AbstractScreenSetupCleanupStrategy.h"
 
 #include "Backpacks.h"
 
 #include "item/BackpackItems.h"
 #include "gui/BackpackPlayScreen.h"
 
-MinecraftClient* Backpacks::clientInstance;
+MinecraftGame* Backpacks::clientInstance;
 
 void Backpacks::initItems()
 {
@@ -38,10 +38,10 @@ static void Localization$_load(Localization* self, const std::string& langCode)
 	self->_appendTranslations("loc/backpacks/" + langCode + ".lang");
 }
 
-static void (*_MinecraftClient$_initMinecraftClient)(MinecraftClient*);
-static void MinecraftClient$_initMinecraftClient(MinecraftClient* self)
+static void (*_MinecraftGame$_initMinecraftGame)(MinecraftGame*);
+static void MinecraftGame$_initMinecraftGame(MinecraftGame* self)
 {
-	_MinecraftClient$_initMinecraftClient(self);
+	_MinecraftGame$_initMinecraftGame(self);
 	Backpacks::clientInstance = self;
 }
 
@@ -57,7 +57,7 @@ static void ScreenChooser$setGameplayScreen(ScreenChooser* self)
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved)
 {	
 	MSHookFunction((void*) &Localization::_load, (void*) &Localization$_load, (void**) &_Localization$_load);
-	MSHookFunction((void*) &MinecraftClient::_initMinecraftClient, (void*) &MinecraftClient$_initMinecraftClient, (void**) &_MinecraftClient$_initMinecraftClient);
+	MSHookFunction((void*) &MinecraftGame::_initMinecraftGame, (void*) &MinecraftGame$_initMinecraftGame, (void**) &_MinecraftGame$_initMinecraftGame);
 	MSHookFunction((void*) &ScreenChooser::setGameplayScreen, (void*) &ScreenChooser$setGameplayScreen, (void**) &_ScreenChooser$setGameplayScreen);
 
 	new Backpacks();

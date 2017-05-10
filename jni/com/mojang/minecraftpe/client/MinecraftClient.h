@@ -2,7 +2,6 @@
 
 #include <string>
 #include <memory>
-#include <function>
 
 class Minecraft;
 class LevelSettings;
@@ -12,6 +11,9 @@ enum class HoloGameMode;
 class HolographicPlatform;
 class LocalPlayer;
 enum class FocusImpact;
+enum class Side;
+class Vec3;
+class Options;
 namespace Realms {
 	class World;
 };
@@ -30,25 +32,31 @@ class VoiceCommand;
 class Level;
 class Dimension;
 enum class InputMode;
+class GuiData;
+class ScreenChooser;
 namespace ui {
 	class GameEventNotification;
 };
 class ResourcePacksInfoData;
 enum class HoloUIInputMode;
 enum class ResourcePackResponse;
+class Font;
+namespace mce {
+	class TextureGroup;
+};
 
-class MinecraftClient {
+class MinecraftGame {
 public:
 
 	char filler1[720 - 4];
 	/* size = 0x2D0 */
 
 	// virtual
-	virtual ~MinecraftClient();
+	virtual ~MinecraftGame();
 
 	// non virtual
-	MinecraftClient(int, char**);
-	void* getOptions();
+	MinecraftGame(int, char**);
+	Options* getOptions();
 	Minecraft* getServer();
 	void* getHoloInput() const;
 	void* getSkinRepository() const;
@@ -66,8 +74,8 @@ public:
 	void updateScheduledScreen();
 	void leaveGame(bool);
 	void* getEventing() const;
-	void* getScreenChooser() const;
-	void* getGuiData();
+	ScreenChooser* getScreenChooser() const;
+	GuiData* getGuiData();
 	void pushScreen(std::shared_ptr<AbstractScreen>, bool);
 	void resetInput();
 	void startFrame();
@@ -140,7 +148,7 @@ public:
 	void setupLevelRendering(Level*, Dimension*, Entity*);
 	void* transformResolution(int*, int*);
 	void updateFoliageColors();
-	void _initMinecraftClient();
+	void _initMinecraftGame();
 	void captureScreenAsImage(TextureData&);
 	void forEachVisibleScreen(std::function<void (std::shared_ptr<AbstractScreen>&)>, bool);
 	void* getUIMeasureStrategy();
@@ -149,7 +157,7 @@ public:
 	void handleLicenseChanged();
 	void hasNetworkPrivileges(bool);
 	void initializeTrialWorld(Player*);
-	void onClientStartedLevel(std::unique_ptr<Level>, std::unique_ptr<LocalPlayer>);
+	void onClientCreatedLevel(std::unique_ptr<Level>, std::unique_ptr<LocalPlayer>);
 	void registerUpsellScreen();
 	void waitAsyncSuspendWork();
 	void createDynamicTextures();
@@ -278,8 +286,8 @@ public:
 	void tickInput();
 	void* getUIWidth() const;
 	void* getRuneFont() const;
-	void* getTextures() const;
-	void+ getUIHeight() const;
+	mce::TextureGroup* getTextures() const;
+	void* getUIHeight() const;
 	bool allowPicking() const;
 	void* getUIDefRepo() const;
 	bool isNotVLRMode() const;
@@ -323,7 +331,7 @@ public:
 	void* getOculusPlatformMessagePump() const;
 	bool isHostingLocalDedicatedServer() const;
 	void* getResourcePackDownloadManager(std::string const&) const;
-	void* getFont() const;
+	Font* getFont() const;
 	void* getScreen() const;
 	bool isEduMode() const;
 

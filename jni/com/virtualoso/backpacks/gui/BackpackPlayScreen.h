@@ -1,6 +1,6 @@
 #pragma once
 
-#include "com/mojang/minecraftpe/client/gui/screen/InGamePlayScreen.h"
+#include "com/mojang/minecraftpe/client/screen/InGamePlayScreen.h"
 
 class ImageWithBackground;
 
@@ -9,7 +9,7 @@ class BackpackPlayScreen : public InGamePlayScreen
 public:
 	std::shared_ptr<ImageWithBackground> backpackButton;
 	
-	BackpackPlayScreen(MinecraftClient&);
+	BackpackPlayScreen(MinecraftGame&, ClientInstance&);
 	
 	virtual void init();
 	virtual void setupPositions();

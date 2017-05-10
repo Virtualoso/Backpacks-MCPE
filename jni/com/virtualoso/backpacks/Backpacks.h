@@ -2,12 +2,12 @@
 
 #include "com/virtualoso/nativetools-api/Mod.h"
 
-class MinecraftClient;
+class MinecraftGame;
 
 class Backpacks : public Mod
 {
 public:
-	static MinecraftClient* clientInstance;
+	static MinecraftGame* clientInstance;
 
 	Backpacks() : Mod() {};
 	virtual void initItems();

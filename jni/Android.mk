@@ -11,7 +11,7 @@ FILE_LIST := $(filter %.cpp, $(ALLFILES))
 
 LOCAL_MODULE    := com.virtualoso.backpacks
 LOCAL_SRC_FILES := $(FILE_LIST:$(LOCAL_PATH)/%=%)
-LOCAL_LDLIBS := -L$(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI) -llog -ldl -lminecraftpe -lmcpelauncher_tinysubstrate -lmcpelauncher_new -lcom.virtualoso.addon.nativetools
+LOCAL_LDLIBS := -L$(LOCAL_PATH) -llog -ldl -lminecraftpe -lmcpelauncher_tinysubstrate
 
 TARGET_NO_UNDEFINED_LDFLAGS :=
 

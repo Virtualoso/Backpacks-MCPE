@@ -37,7 +37,7 @@ int BlockEntity$getType(BlockEntity* self) {
 	
 	else {
 		enderBackpack.enderon = 1;
-		return 22;
+		return 23;
 	}
 }
 
